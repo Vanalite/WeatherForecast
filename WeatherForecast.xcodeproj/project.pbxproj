@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3811F0DB24EC458C00E7AE0E /* CityWeatherEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811F0DA24EC458C00E7AE0E /* CityWeatherEntity.swift */; };
+		3811F0E124EC4FC800E7AE0E /* WeatherEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811F0E024EC4FC800E7AE0E /* WeatherEntity.swift */; };
 		3880A6D124E97A3B00392934 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3880A6D024E97A3B00392934 /* AppDelegate.swift */; };
 		3880A6D324E97A3B00392934 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3880A6D224E97A3B00392934 /* SceneDelegate.swift */; };
 		3880A6D524E97A3B00392934 /* WeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3880A6D424E97A3B00392934 /* WeatherForecastViewController.swift */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3811F0DA24EC458C00E7AE0E /* CityWeatherEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherEntity.swift; sourceTree = "<group>"; };
+		3811F0E024EC4FC800E7AE0E /* WeatherEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherEntity.swift; sourceTree = "<group>"; };
 		3880A6CD24E97A3B00392934 /* WeatherForecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherForecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3880A6D024E97A3B00392934 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3880A6D224E97A3B00392934 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -140,7 +144,9 @@
 			children = (
 				3880A6F524E9871F00392934 /* WeatherForecastRequestEntity.swift */,
 				3880A6F724E9899700392934 /* WeatherForecastResponseEntity.swift */,
+				3811F0DA24EC458C00E7AE0E /* CityWeatherEntity.swift */,
 				3880A70924E998C000392934 /* RealmManager.swift */,
+				3811F0E024EC4FC800E7AE0E /* WeatherEntity.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -394,8 +400,10 @@
 				3880A6F624E9871F00392934 /* WeatherForecastRequestEntity.swift in Sources */,
 				3880A70024E98F7400392934 /* RequestPlugin.swift in Sources */,
 				3880A70624E9982400392934 /* WeatherForecastViewModel.swift in Sources */,
+				3811F0E124EC4FC800E7AE0E /* WeatherEntity.swift in Sources */,
 				3880A6D124E97A3B00392934 /* AppDelegate.swift in Sources */,
 				3880A6F324E981DD00392934 /* NetworkService.swift in Sources */,
+				3811F0DB24EC458C00E7AE0E /* CityWeatherEntity.swift in Sources */,
 				3880A70224E990E200392934 /* SingleExtension.swift in Sources */,
 				3880A6D324E97A3B00392934 /* SceneDelegate.swift in Sources */,
 				3880A70824E9986800392934 /* ViewModelTypeProtocol.swift in Sources */,

@@ -12,6 +12,7 @@ import RealmSwift
 import RxRealm
 
 final class WeatherForecastViewModel: ViewModelType {
+    var searchText = Variable<String>("")
     private let disposeBag: DisposeBag
     private let realm: Realm
 
@@ -21,20 +22,25 @@ final class WeatherForecastViewModel: ViewModelType {
     }
 
     func transform(input: Input) -> Output {
-        let reloadData = input.searchTrigger.map { searchText in
-
+        let reload = searchText.asObservable().filter{ $0.count > 3 }
+            .debounce(0.5, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .map { _ -> Driver<Void> in
+                return .just(())
         }
-        return Output(reloadData: reloadData)
+//        }.asDriver(onErrorDriveWith: .empty())
+        return Output(reloadData: .empty())
     }
 }
 
 
 extension WeatherForecastViewModel {
     struct Input {
-        let searchTrigger: Driver<String>
+//        let searchTrigger: Driver<String>
     }
 
     struct Output {
         let reloadData: Driver<Void>
+//        let items: Driver<[Weath]>
     }
 }

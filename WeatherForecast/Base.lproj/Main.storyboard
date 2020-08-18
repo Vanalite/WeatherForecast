@@ -14,10 +14,45 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Mtk-ai-JXf" userLabel="Search Wrapper View">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nOl-pL-GPy">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="nOl-pL-GPy" secondAttribute="trailing" id="6Kf-xm-i1C"/>
+                                    <constraint firstAttribute="bottom" secondItem="nOl-pL-GPy" secondAttribute="bottom" id="TCn-nX-MlQ"/>
+                                    <constraint firstItem="nOl-pL-GPy" firstAttribute="top" secondItem="Mtk-ai-JXf" secondAttribute="top" id="tVk-nE-a2T"/>
+                                    <constraint firstItem="nOl-pL-GPy" firstAttribute="leading" secondItem="Mtk-ai-JXf" secondAttribute="leading" id="vAT-03-s8X"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="F4z-8f-bkU">
+                                <rect key="frame" x="0.0" y="144" width="414" height="718"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="F4z-8f-bkU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Cj7-gB-8dA"/>
+                            <constraint firstItem="Mtk-ai-JXf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="XeN-uE-Ypq"/>
+                            <constraint firstItem="Mtk-ai-JXf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="bNG-Dw-XG2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Mtk-ai-JXf" secondAttribute="trailing" id="dta-W6-Q0b"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="F4z-8f-bkU" secondAttribute="trailing" id="jxK-Oj-nw7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="F4z-8f-bkU" secondAttribute="bottom" id="qqB-gW-wF9"/>
+                            <constraint firstItem="F4z-8f-bkU" firstAttribute="top" secondItem="Mtk-ai-JXf" secondAttribute="bottom" id="sZ6-La-zsp"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="ssZ-Fj-emb"/>
+                    <connections>
+                        <outlet property="searchBar" destination="nOl-pL-GPy" id="VGQ-Dw-29w"/>
+                        <outlet property="tableView" destination="F4z-8f-bkU" id="Q9x-PW-MAn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
