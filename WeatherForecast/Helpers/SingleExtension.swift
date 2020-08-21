@@ -21,17 +21,29 @@ public extension Single where TraitType == SingleTrait, ElementType == Response 
         }
     }
 
-//    func mapApiError<T: BaseMappable>(_ type: T.Type) -> Single<ElementType> {
-//
-//        return flatMap { response -> Single<ElementType> in
-//            do {
-//                let responseObject = try response.mapObject(type)
-//            } catch {
-//                return Single.error(MoyaError.jsonMapping(response))
-//            }
-//            return Single.just(responseObject)
-//        } // Handle catching error here
-//        .catchError { error in
-//        }
-//    }
+    func mapApiError() -> Single<ElementType> {
+        let defaultErrorResponse = BaseResponseEntity()
+
+        return flatMap { response -> Single<ElementType> in
+            let statusCode: Int
+            do {
+                let responseObject = try response.mapObject(BaseResponseEntity.self)
+                statusCode = responseObject.status.value ?? responseObject.code.value ?? response.statusCode
+            } catch {
+                defaultErrorResponse.message = "Endpoint response data is corrupted"
+                return Single.error(defaultErrorResponse)
+            }
+            if statusCode == 200 {
+                return Single.just(response)
+            } else {
+                defaultErrorResponse.message = "Error request"
+                return Single.error(defaultErrorResponse)
+            }
+
+        }.catchError { error in
+            defaultErrorResponse.message = "Endpoint response data is corrupted"
+            return Single.error(defaultErrorResponse)
+        }
+    }
+
 }

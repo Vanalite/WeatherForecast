@@ -13,23 +13,34 @@ import RxRealm
 
 final class WeatherForecastViewModel: ViewModelType {
     var searchText = Variable<String>("")
-    private let disposeBag: DisposeBag
+    private var rxWeatherItems: Observable<(Array<WeatherEntity>, RealmChangeset?)> = Observable.empty()
+
+    private let netWorkService : NetworkService
     private let realm: Realm
 
-    init(realm: Realm = RealmManager.shared.mainThreadRealm) {
+    private let disposeBag: DisposeBag
+
+    init(netWorkService: NetworkService = NetworkService(),
+        realm: Realm = RealmManager.shared.mainThreadRealm) {
+        self.netWorkService = netWorkService
         self.realm = realm
         self.disposeBag = DisposeBag()
     }
 
     func transform(input: Input) -> Output {
-        let reload = searchText.asObservable().filter{ $0.count > 3 }
-            .debounce(0.5, scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
-            .map { _ -> Driver<Void> in
-                return .just(())
+        let reload = searchText.asObservable().filter{
+            $0.count > 2
+        }.debug()
+            .debounce(1, scheduler: MainScheduler.instance)
+            .flatMap { [weak self] text -> Single<[WeatherEntity]> in
+                guard let self = self else { return .just([]) }
+                return self.netWorkService.getWeatherForecast(text).map {
+                    guard let city = $0.city else { return [] }
+                    return Array(city.weatherList)
+                }
         }
-//        }.asDriver(onErrorDriveWith: .empty())
-        return Output(reloadData: .empty())
+        return Output(reloadData: Driver<Void>.just(()),
+                      items: reload)
     }
 }
 
@@ -41,6 +52,6 @@ extension WeatherForecastViewModel {
 
     struct Output {
         let reloadData: Driver<Void>
-//        let items: Driver<[Weath]>
+        let items: Observable<[WeatherEntity]>
     }
 }

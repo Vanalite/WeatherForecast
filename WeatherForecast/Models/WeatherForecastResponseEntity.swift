@@ -11,26 +11,22 @@ import ObjectMapper_Realm
 import ObjectMapper
 
 
-class WeatherForecastResponseEntity: Object, Mappable {
+class WeatherForecastResponseEntity: BaseResponseEntity {
 
-    @objc dynamic var cod = ""
-    @objc dynamic var message = 0
     @objc dynamic var cnt = 7
     @objc dynamic var city: CityWeatherEntity?
-    var weatherList: List<WeatherEntity> = List<WeatherEntity>()
 
     required convenience init?(map: Map) {
         self.init()
     }
     
-    func mapping(map: Map) {
-        cod <- map[CodingKeys.cod.rawValue]
-        message <- map[CodingKeys.message.rawValue]
+    override func mapping(map: Map) {
+        super.mapping(map: map)
         cnt <- map[CodingKeys.cnt.rawValue]
         city <- map[CodingKeys.city.rawValue]
         if let array = Mapper<WeatherEntity>().mapArray(JSONObject: map[CodingKeys.list.rawValue].currentValue) {
-            self.weatherList.removeAll()
-            self.weatherList.append(objectsIn: array)
+            self.city?.weatherList.removeAll()
+            self.city?.weatherList.append(objectsIn: array)
         }
     }
     

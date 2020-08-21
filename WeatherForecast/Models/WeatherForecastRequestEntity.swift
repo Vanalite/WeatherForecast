@@ -8,17 +8,18 @@
 
 import ObjectMapper
 
-class WeatherForecastRequestEntity: Mappable {
+class WeatherForecastRequestEntity: BaseResponseEntity {
     var city = ""
     var cnt: Int = 7
     var appId = Constants.AppID
-    var unit = ""
+    var unit = "metric"
 
     required convenience init?(map: Map) {
         self.init()
     }
 
-    func mapping(map: Map) {
+    override func mapping(map: Map) {
+        super.mapping(map: map)
         city <- map[CodingKeys.city.rawValue]
         cnt <- map[CodingKeys.cnt.rawValue]
         appId <- map[CodingKeys.appId.rawValue]

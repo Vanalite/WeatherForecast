@@ -11,18 +11,24 @@ import ObjectMapper_Realm
 import ObjectMapper
 
 
-class WeatherEntity: Object, Mappable {
+class WeatherEntity: BaseResponseEntity {
     @objc dynamic var pressure = 0
     @objc dynamic var humidity = 0
     @objc dynamic var descriptionText: String = ""
     @objc dynamic var temperature = 0
     @objc dynamic var timestamp = 0
 
+    let cities = LinkingObjects(fromType: CityWeatherEntity.self, property: CityWeatherEntity.CodingKeys.weatherList.rawValue)
+    var city: CityWeatherEntity? {
+        return self.cities.first
+    }
+
     required convenience init?(map: Map) {
         self.init()
     }
 
-    func mapping(map: Map) {
+    override func mapping(map: Map) {
+        super.mapping(map: map)
         timestamp <- map[CodingKeys.dt.rawValue]
         pressure <- map[CodingKeys.pressure.rawValue]
         humidity <- map[CodingKeys.humidity.rawValue]

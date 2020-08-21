@@ -11,7 +11,7 @@ import ObjectMapper_Realm
 import ObjectMapper
 
 
-class CityWeatherEntity: Object, Mappable {
+class CityWeatherEntity: BaseResponseEntity {
     @objc dynamic var id = ""
     @objc dynamic var name = ""
     @objc dynamic var country = ""
@@ -19,13 +19,14 @@ class CityWeatherEntity: Object, Mappable {
     @objc dynamic var timezone = 0
     @objc dynamic var lon: Float = 0
     @objc dynamic var lat: Float = 0
-
+    var weatherList: List<WeatherEntity> = List<WeatherEntity>()
 
     required convenience init?(map: Map) {
         self.init()
     }
 
-    func mapping(map: Map) {
+    override func mapping(map: Map) {
+        super.mapping(map: map)
         id <- map[CodingKeys.id.rawValue]
         name <- map[CodingKeys.name.rawValue]
         country <- map[CodingKeys.country.rawValue]
@@ -44,7 +45,7 @@ class CityWeatherEntity: Object, Mappable {
         case coord
         case lon
         case lat
-
+        case weatherList
     }
 
 }

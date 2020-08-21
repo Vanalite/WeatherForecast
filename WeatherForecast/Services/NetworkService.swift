@@ -57,14 +57,15 @@ class NetworkService: NSObject {
         self.apiProvider = apiProvider
     }
 
-    func getWeatherForecast(_ city: String, cnt: Int?, unit: String)-> Single<WeatherForecastResponseEntity> {
+    func getWeatherForecast(_ city: String, cnt: Int? = nil, unit: String? = nil)-> Single<WeatherForecastResponseEntity> {
         let request = WeatherForecastRequestEntity()
         request.city = city
         if let cnt = cnt {
             request.cnt = cnt
         }
-        request.unit = unit
-
+        if let unit = unit {
+            request.unit = unit
+        }
         return downloadEntity(endpoint: .content(request: request))
     }
 
@@ -74,20 +75,12 @@ class NetworkService: NSObject {
     }
 
     func download<T: Mappable>(endpoint: NetworkRouter, context: MapContext? = nil) -> Single<T> {
-        if Thread.isMainThread {
-//            if AppDelegate.shared().reachability.connection == .none {
-//                let error = InspectorioError(message: Strings.NO_NETWORK_MESSAGE)
-//                AppDelegate.topViewController()?.presentNetworkAlert()
-//                return Single.error(error)
-//            }
-        }
-
         return apiProvider
             .provider
             .rx
             .request(endpoint, callbackQueue: DispatchQueue.global(qos: .utility))
             .filterSuccessfulStatusCodes()
-//            .mapApiError(T.self)
+            .mapApiError()
             .mapObject(T.self, context: context)
     }
 

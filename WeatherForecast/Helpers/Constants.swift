@@ -9,7 +9,7 @@
 import Foundation
 
 enum Constants {
-    static let baseURLPath = ": https://api.openweathermap.org/data/2.5/forecast/"
+    static let baseURLPath = "https://api.openweathermap.org/data/2.5/forecast/"
     static let authenticationToken = "Basic xxx"
     static let AppID = "60c6fbeb4b93ac653c492ba806fc346d"
 }

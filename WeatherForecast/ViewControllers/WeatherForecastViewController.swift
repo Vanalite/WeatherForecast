@@ -12,6 +12,10 @@ import RxCocoa
 
 class WeatherForecastViewController: UIViewController {
 
+    private struct Constants {
+        static let WeatherTableViewCellIndentifier = "WeatherTableViewCellIndentifier"
+    }
+
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
 
@@ -27,38 +31,33 @@ class WeatherForecastViewController: UIViewController {
 
     private func configureUI() {
         title = "Weather Forecast"
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableView.register(UINib(nibName: String(describing: WeatherTableViewCell.self), bundle: nil),
+                           forCellReuseIdentifier: Constants.WeatherTableViewCellIndentifier)
     }
 
     private func bindViewModel() {
+        viewModel = WeatherForecastViewModel()
         let input = buildViewModelInput()
         let output = viewModel.transform(input: input)
-        output.reloadData.do(onNext: { [weak self] (_) in
+        output.reloadData.debug().drive({ [weak self] (_) in
             self?.tableView.reloadData()
         })
-    }
+        output.items.debug().bind(to: tableView.rx.items) { [weak self] (tableView, row, element) in
+            let indexPath = IndexPath(row: row, section: .zero)
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.WeatherTableViewCellIndentifier, for: indexPath)
+            
+//            cell.rx.defectListButtonTapped.asDriver().drive(self?.openDefectListButtonTapped ?? PublishSubject()).disposed(by: cell.disposeBag)
 
-    @IBAction func cancelButtonDidTap(_ sender: UIButton) {
-        searchBar.resignFirstResponder()
+            return cell
+        }.disposed(by: disposeBag)
     }
 
     private func buildViewModelInput() -> WeatherForecastViewModel.Input {
-        searchBar.rx.text.orEmpty.bind(to: viewModel.searchText)
+        searchBar.rx.text.orEmpty.bind(to: viewModel.searchText).disposed(by: disposeBag)
+        searchBar.rx.cancelButtonClicked.asDriver().drive(onNext: { _ in
+            self.searchBar.resignFirstResponder()
+        }).disposed(by: disposeBag)
         return WeatherForecastViewModel.Input()
-//        let searchTrigger = searchBar.rx.text.changed.distinctUntilChanged().filter({ text -> Bool in
-//            if let text = text, text.count > 3 {
-//                return true
-//            }
-//            return false
-//        }).asDriver(onErrorDriveWith: Driver<ControlEvent<String>>("")))
-//        return WeatherForecastViewModel.Input(searchTrigger: searchTrigger)
-//        return WeatherForecastViewModel.Input(searchTrigger: searchBar.rx.text.distinctUntilChanged().filter({ text -> Bool in
-//            if let text = text, text.count > 3 {
-//                return true
-//            }
-//            return false
-//        }).asDriver(onErrorJustReturn: Observable<ControlProperty<String?>.E>.E)(""))
     }
 
 }
