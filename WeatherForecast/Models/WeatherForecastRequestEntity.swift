@@ -8,7 +8,7 @@
 
 import ObjectMapper
 
-class WeatherForecastRequestEntity: BaseResponseEntity {
+class WeatherForecastRequestEntity: Mappable {
     var city = ""
     var cnt: Int = 7
     var appId = Constants.AppID
@@ -18,8 +18,7 @@ class WeatherForecastRequestEntity: BaseResponseEntity {
         self.init()
     }
 
-    override func mapping(map: Map) {
-        super.mapping(map: map)
+    func mapping(map: Map) {
         city <- map[CodingKeys.city.rawValue]
         cnt <- map[CodingKeys.cnt.rawValue]
         appId <- map[CodingKeys.appId.rawValue]
@@ -27,7 +26,7 @@ class WeatherForecastRequestEntity: BaseResponseEntity {
     }
 
     enum CodingKeys: String {
-        case city
+        case city = "q"
         case cnt
         case appId
         case unit

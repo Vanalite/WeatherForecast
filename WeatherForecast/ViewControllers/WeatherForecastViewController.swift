@@ -14,6 +14,7 @@ class WeatherForecastViewController: UIViewController {
 
     private struct Constants {
         static let WeatherTableViewCellIndentifier = "WeatherTableViewCellIndentifier"
+        static let WeatherTableViewCellHeight: CGFloat = 150
     }
 
     @IBOutlet weak var searchBar: UISearchBar!
@@ -31,8 +32,14 @@ class WeatherForecastViewController: UIViewController {
 
     private func configureUI() {
         title = "Weather Forecast"
+        configureTableView()
+    }
+
+    private func configureTableView() {
         tableView.register(UINib(nibName: String(describing: WeatherTableViewCell.self), bundle: nil),
                            forCellReuseIdentifier: Constants.WeatherTableViewCellIndentifier)
+        tableView.allowsSelection = false
+        tableView.rowHeight = Constants.WeatherTableViewCellHeight
     }
 
     private func bindViewModel() {
@@ -44,10 +51,9 @@ class WeatherForecastViewController: UIViewController {
         })
         output.items.debug().bind(to: tableView.rx.items) { [weak self] (tableView, row, element) in
             let indexPath = IndexPath(row: row, section: .zero)
-            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.WeatherTableViewCellIndentifier, for: indexPath)
-            
-//            cell.rx.defectListButtonTapped.asDriver().drive(self?.openDefectListButtonTapped ?? PublishSubject()).disposed(by: cell.disposeBag)
-
+            guard let self = self,
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.WeatherTableViewCellIndentifier, for: indexPath) as? WeatherTableViewCell else { return UITableViewCell() }
+            cell.configure(dataSource: self.viewModel.weatherDataSource(at: row))
             return cell
         }.disposed(by: disposeBag)
     }
@@ -62,13 +68,13 @@ class WeatherForecastViewController: UIViewController {
 
 }
 
-extension WeatherForecastViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-}
+//extension WeatherForecastViewController: UITableViewDelegate, UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        return UITableViewCell()
+//    }
+//
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 10
+//    }
+//}
 

@@ -13,8 +13,7 @@ import ObjectMapper_Realm
 class BaseResponseEntity: Object, Mappable {
 
     @objc dynamic var message: String = ""
-    let status = RealmOptional<Int>()
-    let code = RealmOptional<Int>()
+    @objc dynamic var code: String = ""
 
     required convenience init?(map: Map) {
         self.init()
@@ -22,6 +21,7 @@ class BaseResponseEntity: Object, Mappable {
 
     func mapping(map: Map) {
         message <- map[CodingKeys.message.rawValue]
+        code <- map[CodingKeys.cod.rawValue]
     }
 
     enum CodingKeys: String {

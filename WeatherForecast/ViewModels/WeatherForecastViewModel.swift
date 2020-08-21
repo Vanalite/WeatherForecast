@@ -34,13 +34,23 @@ final class WeatherForecastViewModel: ViewModelType {
             .debounce(1, scheduler: MainScheduler.instance)
             .flatMap { [weak self] text -> Single<[WeatherEntity]> in
                 guard let self = self else { return .just([]) }
-                return self.netWorkService.getWeatherForecast(text).map {
-                    guard let city = $0.city else { return [] }
-                    return Array(city.weatherList)
+                return self.netWorkService.getWeatherForecast(text)
+                    .catchErrorJustReturn(WeatherForecastResponseEntity())
+                    .map {
+                        guard let city = $0.city else { return [WeatherEntity()] }
+                        return Array(city.weatherList)
                 }
         }
         return Output(reloadData: Driver<Void>.just(()),
                       items: reload)
+    }
+
+    func weatherDataSource(at index: Int) -> WeatherDataSource {
+        return WeatherDataSource(date: "Aug 21st",
+                                 descriptionText: "The day is sunny",
+                                 temperature: 25.5,
+                                 pressure: 1070,
+                                 humidity: 55)
     }
 }
 

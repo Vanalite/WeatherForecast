@@ -14,6 +14,7 @@ target 'WeatherForecast' do
     pod 'RxOptional', '~> 3.6.2'
     pod 'RxRealm', '~> 0.7.6'
     pod 'SnapKit', '~> 4.2.0'
+    pod 'SwiftyBeaver'
 
   # Pods for WeatherForecast
 #    post_install do |installer|

@@ -7,11 +7,18 @@
 //
 
 import Foundation
-
+import SwiftyJSON
 import RxSwift
 import Moya
 import Moya_ObjectMapper
 import ObjectMapper
+
+enum NetError: Error {
+    case ResponseTypeError
+    case JsonError
+    case ModelCovertFail
+    case fail(message:String)
+}
 
 public extension Single where TraitType == SingleTrait, ElementType == Response {
 
@@ -28,7 +35,7 @@ public extension Single where TraitType == SingleTrait, ElementType == Response 
             let statusCode: Int
             do {
                 let responseObject = try response.mapObject(BaseResponseEntity.self)
-                statusCode = responseObject.status.value ?? responseObject.code.value ?? response.statusCode
+                statusCode = Int(responseObject.code) ?? response.statusCode
             } catch {
                 defaultErrorResponse.message = "Endpoint response data is corrupted"
                 return Single.error(defaultErrorResponse)
@@ -46,4 +53,41 @@ public extension Single where TraitType == SingleTrait, ElementType == Response 
         }
     }
 
+    func json() -> Single<JSON> {
+        return map { response in
+            if let json = try? JSON(data: response.data) {
+                if response.statusCode != 200 {
+                    throw NetError.fail(message: json["msg"].stringValue)
+                }
+                if json["code"].intValue == 11111 {
+                    return json["data"]
+                }else{
+                    throw NetError.fail(message: json["msg"].stringValue)
+                }
+            }
+            throw NetError.JsonError
+        }
+    }
+}
+
+public extension PrimitiveSequence where Trait == SingleTrait, Element == JSON {
+
+    func mapObject<T: BaseMappable>(type: T.Type) -> Single<T> {
+        return map { json in
+
+            guard let model = Mapper<T>().map(JSON: json.dictionaryValue) else {
+                throw NetError.ModelCovertFail
+            }
+            return model
+        }
+    }
+
+    func mapArray<T: BaseMappable>(type: T.Type) -> Single<[T]> {
+        return map { json in
+            guard let arrayObj = json.arrayObject else {
+                throw NetError.ModelCovertFail
+            }
+            return Mapper<T>().mapArray(JSONObject: arrayObj)!
+        }
+    }
 }

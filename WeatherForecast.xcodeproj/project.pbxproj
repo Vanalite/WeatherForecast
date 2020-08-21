@@ -12,6 +12,7 @@
 		38345C9C24EEDB8900F1BB11 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38345C9A24EEDB8900F1BB11 /* WeatherTableViewCell.swift */; };
 		38345C9D24EEDB8900F1BB11 /* WeatherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38345C9B24EEDB8900F1BB11 /* WeatherTableViewCell.xib */; };
 		38345C9F24EEEC2F00F1BB11 /* BaseResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38345C9E24EEEC2F00F1BB11 /* BaseResponseEntity.swift */; };
+		38345CA424F0FA9A00F1BB11 /* WeatherDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38345CA324F0FA9A00F1BB11 /* WeatherDataSource.swift */; };
 		3880A6D124E97A3B00392934 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3880A6D024E97A3B00392934 /* AppDelegate.swift */; };
 		3880A6D324E97A3B00392934 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3880A6D224E97A3B00392934 /* SceneDelegate.swift */; };
 		3880A6D524E97A3B00392934 /* WeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3880A6D424E97A3B00392934 /* WeatherForecastViewController.swift */; };
@@ -49,6 +50,7 @@
 		38345C9A24EEDB8900F1BB11 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
 		38345C9B24EEDB8900F1BB11 /* WeatherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherTableViewCell.xib; sourceTree = "<group>"; };
 		38345C9E24EEEC2F00F1BB11 /* BaseResponseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponseEntity.swift; sourceTree = "<group>"; };
+		38345CA324F0FA9A00F1BB11 /* WeatherDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataSource.swift; sourceTree = "<group>"; };
 		3880A6CD24E97A3B00392934 /* WeatherForecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherForecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3880A6D024E97A3B00392934 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3880A6D224E97A3B00392934 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,10 +103,19 @@
 		38345C9924EEDB6200F1BB11 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				38345CA224F0FA8A00F1BB11 /* DataSources */,
 				38345C9A24EEDB8900F1BB11 /* WeatherTableViewCell.swift */,
 				38345C9B24EEDB8900F1BB11 /* WeatherTableViewCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		38345CA224F0FA8A00F1BB11 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				38345CA324F0FA9A00F1BB11 /* WeatherDataSource.swift */,
+			);
+			path = DataSources;
 			sourceTree = "<group>";
 		};
 		3880A6C424E97A3B00392934 = {
@@ -421,6 +432,7 @@
 				3811F0E124EC4FC800E7AE0E /* WeatherEntity.swift in Sources */,
 				38345C9F24EEEC2F00F1BB11 /* BaseResponseEntity.swift in Sources */,
 				38345C9C24EEDB8900F1BB11 /* WeatherTableViewCell.swift in Sources */,
+				38345CA424F0FA9A00F1BB11 /* WeatherDataSource.swift in Sources */,
 				3880A6D124E97A3B00392934 /* AppDelegate.swift in Sources */,
 				3880A6F324E981DD00392934 /* NetworkService.swift in Sources */,
 				3811F0DB24EC458C00E7AE0E /* CityWeatherEntity.swift in Sources */,
@@ -591,6 +603,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y34Q9T3ZAB;
 				INFOPLIST_FILE = WeatherForecast/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -610,6 +623,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y34Q9T3ZAB;
 				INFOPLIST_FILE = WeatherForecast/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

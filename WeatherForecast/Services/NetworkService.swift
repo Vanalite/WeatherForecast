@@ -20,7 +20,9 @@ enum NetworkRouter: TargetType {
 
 
     var headers: [String : String]? {
-        return nil
+        return [
+          "Content-Type": "application/json"
+        ]
     }
 
     var baseURL: URL {
@@ -39,6 +41,10 @@ enum NetworkRouter: TargetType {
         case .content:
             return "/daily"
         }
+    }
+
+    var isLogable: Bool {
+        return true
     }
 
     var task: Task {
@@ -83,6 +89,5 @@ class NetworkService: NSObject {
             .mapApiError()
             .mapObject(T.self, context: context)
     }
-
 }
 

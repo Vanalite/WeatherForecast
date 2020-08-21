@@ -43,6 +43,7 @@ PODS:
   - RxTest (4.5.0):
     - RxSwift (>= 4.4.2, ~> 4.4)
   - SnapKit (4.2.0)
+  - SwiftyBeaver (1.9.1)
   - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
@@ -56,6 +57,7 @@ DEPENDENCIES:
   - RxRealm (~> 0.7.6)
   - RxTest (~> 4.5.0)
   - SnapKit (~> 4.2.0)
+  - SwiftyBeaver
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
@@ -77,6 +79,7 @@ SPEC REPOS:
     - RxSwift
     - RxTest
     - SnapKit
+    - SwiftyBeaver
     - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -97,8 +100,9 @@ SPEC CHECKSUMS:
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   RxTest: 3ccb66bfbace0bf7df1c43a7c75d046f8ce60372
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SwiftyBeaver: a1f5691458561414bcfab51874b2b7445451602b
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: a52f6ad5d22cc21aef1f980df434a5e20c2f554a
+PODFILE CHECKSUM: 4b89500efe9412e2fbb635a735ef3d8779903970
 
 COCOAPODS: 1.9.3
