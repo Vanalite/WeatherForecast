@@ -6,6 +6,7 @@
 //  Copyright © 2020 Vanalite. All rights reserved.
 //
 
+import Foundation
 import RxSwift
 import RxCocoa
 import RealmSwift
@@ -17,6 +18,7 @@ final class WeatherForecastViewModel: ViewModelType {
 
     private let netWorkService : NetworkService
     private let realm: Realm
+    private var weatherItems: [WeatherEntity] = []
 
     private let disposeBag: DisposeBag
 
@@ -29,16 +31,19 @@ final class WeatherForecastViewModel: ViewModelType {
 
     func transform(input: Input) -> Output {
         let reload = searchText.asObservable().filter{
-            $0.count > 2
+                $0.count > 2
         }.debug()
             .debounce(1, scheduler: MainScheduler.instance)
             .flatMap { [weak self] text -> Single<[WeatherEntity]> in
                 guard let self = self else { return .just([]) }
                 return self.netWorkService.getWeatherForecast(text)
                     .catchErrorJustReturn(WeatherForecastResponseEntity())
-                    .map {
-                        guard let city = $0.city else { return [WeatherEntity()] }
-                        return Array(city.weatherList)
+                    .map { [weak self] in
+                        guard let self = self,
+                            let city = $0.city else { return [] }
+                        let weatherArray = Array(city.weatherList)
+                        self.weatherItems = weatherArray
+                        return weatherArray
                 }
         }
         return Output(reloadData: Driver<Void>.just(()),
@@ -46,11 +51,8 @@ final class WeatherForecastViewModel: ViewModelType {
     }
 
     func weatherDataSource(at index: Int) -> WeatherDataSource {
-        return WeatherDataSource(date: "Aug 21st",
-                                 descriptionText: "The day is sunny",
-                                 temperature: 25.5,
-                                 pressure: 1070,
-                                 humidity: 55)
+        guard 0 <= index && index < weatherItems.count else { return WeatherDataSource() }
+        return WeatherDataSource(withWeatherItem: weatherItems[index])
     }
 }
 

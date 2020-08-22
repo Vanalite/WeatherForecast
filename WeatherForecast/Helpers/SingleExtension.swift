@@ -59,9 +59,9 @@ public extension Single where TraitType == SingleTrait, ElementType == Response 
                 if response.statusCode != 200 {
                     throw NetError.fail(message: json["msg"].stringValue)
                 }
-                if json["code"].intValue == 11111 {
+                if json["code"].intValue == 200 {
                     return json["data"]
-                }else{
+                } else {
                     throw NetError.fail(message: json["msg"].stringValue)
                 }
             }

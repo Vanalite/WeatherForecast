@@ -38,15 +38,16 @@ target 'WeatherForecast' do
 #    installer.pods_project.build_configurations.each do |config|
 #        config.build_settings['CLANG_ENABLE_CODE_COVERAGE'] = 'NO'
 #    end
-end
 
-target 'WeatherForecastTests' do
-    inherit! :search_paths
-    # Pods for testing
-    use_frameworks!
-    inhibit_all_warnings!
-    pod 'Nimble', '~> 8.0.1'
-    pod 'Cuckoo', '~> 1.3.0'
-    pod 'RxTest', '~> 4.5.0'
-    pod 'RxBlocking', '~> 4.5.0'
+  target 'WeatherForecastTests' do
+      inherit! :search_paths
+      # Pods for testing
+      use_frameworks!
+      inhibit_all_warnings!
+      pod 'Nimble', '~> 8.0.1'
+      pod 'Cuckoo', '~> 1.3.0'
+      pod 'RxTest', '~> 4.5.0'
+      pod 'RxBlocking', '~> 4.5.0'
+  end
+
 end

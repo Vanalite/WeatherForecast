@@ -15,7 +15,7 @@ class WeatherEntity: BaseResponseEntity {
     @objc dynamic var pressure = 0
     @objc dynamic var humidity = 0
     @objc dynamic var descriptionText: String = ""
-    @objc dynamic var temperature = 0
+    @objc dynamic var temperature: Float = 0
     @objc dynamic var timestamp = 0
 
     let cities = LinkingObjects(fromType: CityWeatherEntity.self, property: CityWeatherEntity.CodingKeys.weatherList.rawValue)
@@ -32,12 +32,12 @@ class WeatherEntity: BaseResponseEntity {
         timestamp <- map[CodingKeys.dt.rawValue]
         pressure <- map[CodingKeys.pressure.rawValue]
         humidity <- map[CodingKeys.humidity.rawValue]
-        descriptionText <- map[CodingKeys.weather.rawValue + "." + CodingKeys.description.rawValue]
+        descriptionText <- map[CodingKeys.weather.rawValue + "." + "0" + "." + CodingKeys.description.rawValue]
 
         var minTemp: Float = 0, maxTemp: Float = 0
         minTemp <- map[CodingKeys.temp.rawValue + "." + CodingKeys.min.rawValue]
         maxTemp <- map[CodingKeys.temp.rawValue + "." + CodingKeys.max.rawValue]
-        temperature = Int((minTemp + maxTemp) / 2)
+        temperature = (minTemp + maxTemp) / 2
     }
 
     enum CodingKeys: String {

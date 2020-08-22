@@ -31,33 +31,17 @@ class APIProvider {
     init(endpointClosure: @escaping MoyaProvider<NetworkRouter>.EndpointClosure = MoyaProvider.defaultEndpointMapping,
          stubClosure: MoyaProvider<NetworkRouter>.StubClosure? = nil) {
         var plugins: [Moya.PluginType] = []
-        let requestPlugin = RequestPlugin()
         let networkLoggerPlugin: NetworkLoggerPlugin = NetworkLoggerPlugin(verbose: true, cURL: true , responseDataFormatter: JSONResponseDataFormatter)
 
-        let credPlugin = CredentialsPlugin.init { (target) -> URLCredential? in
-            let protectionSpace = URLProtectionSpace.init(host: "api.openweathermap.org",
-                                                          port: 0,
-                                                          protocol: "https",
-                                                          realm: nil,
-                                                          authenticationMethod: nil)
 
-            let credential: URLCredential? = URLCredentialStorage.shared.defaultCredential(for: protectionSpace)
-
-            return credential
-        }
-
-//        plugins.append(networkLoggerPlugin)
-//        plugins.append(requestPlugin)
-//        plugins.append(credPlugin)
+        plugins.append(networkLoggerPlugin)
         let defaultStubClosure = { (target: TargetType) -> Moya.StubBehavior in
             guard let _ = target as? NetworkRouter else { return .never }
             return .immediate
         }
-        let stubClosure = stubClosure ?? defaultStubClosure
-
-        self.provider = MoyaProvider<NetworkRouter>(endpointClosure: endpointClosure,
-                                                     stubClosure: stubClosure,
-                                                     plugins: plugins)
+        let _ = stubClosure ?? defaultStubClosure
+        // Inject plugin here
+        self.provider = MoyaProvider<NetworkRouter>()
     }
 }
 

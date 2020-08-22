@@ -13,6 +13,10 @@
 		38345C9D24EEDB8900F1BB11 /* WeatherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38345C9B24EEDB8900F1BB11 /* WeatherTableViewCell.xib */; };
 		38345C9F24EEEC2F00F1BB11 /* BaseResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38345C9E24EEEC2F00F1BB11 /* BaseResponseEntity.swift */; };
 		38345CA424F0FA9A00F1BB11 /* WeatherDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38345CA324F0FA9A00F1BB11 /* WeatherDataSource.swift */; };
+		38345CA624F1316700F1BB11 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38345CA524F1316700F1BB11 /* GeneratedMocks.swift */; };
+		38345CA824F131D400F1BB11 /* RealmTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38345CA724F131D300F1BB11 /* RealmTestCase.swift */; };
+		38345CAA24F132B600F1BB11 /* weatherforecase-response.json in Resources */ = {isa = PBXBuildFile; fileRef = 38345CA924F132B600F1BB11 /* weatherforecase-response.json */; };
+		38345CAC24F1334400F1BB11 /* MockJSONAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38345CAB24F1334400F1BB11 /* MockJSONAdapter.swift */; };
 		3880A6D124E97A3B00392934 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3880A6D024E97A3B00392934 /* AppDelegate.swift */; };
 		3880A6D324E97A3B00392934 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3880A6D224E97A3B00392934 /* SceneDelegate.swift */; };
 		3880A6D524E97A3B00392934 /* WeatherForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3880A6D424E97A3B00392934 /* WeatherForecastViewController.swift */; };
@@ -25,7 +29,6 @@
 		3880A6F824E9899700392934 /* WeatherForecastResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3880A6F724E9899700392934 /* WeatherForecastResponseEntity.swift */; };
 		3880A6FB24E98E6E00392934 /* APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3880A6FA24E98E6E00392934 /* APIProvider.swift */; };
 		3880A6FE24E98F0000392934 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3880A6FD24E98F0000392934 /* Constants.swift */; };
-		3880A70024E98F7400392934 /* RequestPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3880A6FF24E98F7400392934 /* RequestPlugin.swift */; };
 		3880A70224E990E200392934 /* SingleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3880A70124E990E200392934 /* SingleExtension.swift */; };
 		3880A70624E9982400392934 /* WeatherForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3880A70524E9982400392934 /* WeatherForecastViewModel.swift */; };
 		3880A70824E9986800392934 /* ViewModelTypeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3880A70724E9986800392934 /* ViewModelTypeProtocol.swift */; };
@@ -51,6 +54,10 @@
 		38345C9B24EEDB8900F1BB11 /* WeatherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherTableViewCell.xib; sourceTree = "<group>"; };
 		38345C9E24EEEC2F00F1BB11 /* BaseResponseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponseEntity.swift; sourceTree = "<group>"; };
 		38345CA324F0FA9A00F1BB11 /* WeatherDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataSource.swift; sourceTree = "<group>"; };
+		38345CA524F1316700F1BB11 /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
+		38345CA724F131D300F1BB11 /* RealmTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTestCase.swift; sourceTree = "<group>"; };
+		38345CA924F132B600F1BB11 /* weatherforecase-response.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "weatherforecase-response.json"; sourceTree = "<group>"; };
+		38345CAB24F1334400F1BB11 /* MockJSONAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockJSONAdapter.swift; sourceTree = "<group>"; };
 		3880A6CD24E97A3B00392934 /* WeatherForecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherForecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3880A6D024E97A3B00392934 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3880A6D224E97A3B00392934 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,7 +74,6 @@
 		3880A6F724E9899700392934 /* WeatherForecastResponseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastResponseEntity.swift; sourceTree = "<group>"; };
 		3880A6FA24E98E6E00392934 /* APIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProvider.swift; sourceTree = "<group>"; };
 		3880A6FD24E98F0000392934 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		3880A6FF24E98F7400392934 /* RequestPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPlugin.swift; sourceTree = "<group>"; };
 		3880A70124E990E200392934 /* SingleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleExtension.swift; sourceTree = "<group>"; };
 		3880A70524E9982400392934 /* WeatherForecastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastViewModel.swift; sourceTree = "<group>"; };
 		3880A70724E9986800392934 /* ViewModelTypeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTypeProtocol.swift; sourceTree = "<group>"; };
@@ -118,6 +124,14 @@
 			path = DataSources;
 			sourceTree = "<group>";
 		};
+		38345CAD24F133C500F1BB11 /* MockJSON */ = {
+			isa = PBXGroup;
+			children = (
+				38345CA924F132B600F1BB11 /* weatherforecase-response.json */,
+			);
+			path = MockJSON;
+			sourceTree = "<group>";
+		};
 		3880A6C424E97A3B00392934 = {
 			isa = PBXGroup;
 			children = (
@@ -160,8 +174,12 @@
 		3880A6E624E97A3C00392934 /* WeatherForecastTests */ = {
 			isa = PBXGroup;
 			children = (
+				38345CAD24F133C500F1BB11 /* MockJSON */,
+				38345CA524F1316700F1BB11 /* GeneratedMocks.swift */,
+				38345CAB24F1334400F1BB11 /* MockJSONAdapter.swift */,
 				3880A6E724E97A3C00392934 /* WeatherForecastTests.swift */,
 				3880A6E924E97A3C00392934 /* Info.plist */,
+				38345CA724F131D300F1BB11 /* RealmTestCase.swift */,
 			);
 			path = WeatherForecastTests;
 			sourceTree = "<group>";
@@ -184,7 +202,6 @@
 			children = (
 				3880A6FA24E98E6E00392934 /* APIProvider.swift */,
 				3880A6F224E981DD00392934 /* NetworkService.swift */,
-				3880A6FF24E98F7400392934 /* RequestPlugin.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -331,6 +348,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38345CAA24F132B600F1BB11 /* weatherforecase-response.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,7 +445,6 @@
 				3880A6F824E9899700392934 /* WeatherForecastResponseEntity.swift in Sources */,
 				3880A6FB24E98E6E00392934 /* APIProvider.swift in Sources */,
 				3880A6F624E9871F00392934 /* WeatherForecastRequestEntity.swift in Sources */,
-				3880A70024E98F7400392934 /* RequestPlugin.swift in Sources */,
 				3880A70624E9982400392934 /* WeatherForecastViewModel.swift in Sources */,
 				3811F0E124EC4FC800E7AE0E /* WeatherEntity.swift in Sources */,
 				38345C9F24EEEC2F00F1BB11 /* BaseResponseEntity.swift in Sources */,
@@ -448,6 +465,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3880A6E824E97A3C00392934 /* WeatherForecastTests.swift in Sources */,
+				38345CAC24F1334400F1BB11 /* MockJSONAdapter.swift in Sources */,
+				38345CA624F1316700F1BB11 /* GeneratedMocks.swift in Sources */,
+				38345CA824F131D400F1BB11 /* RealmTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

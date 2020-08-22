@@ -9,6 +9,7 @@
 import Moya
 import RxSwift
 import ObjectMapper
+import SwiftyJSON
 
 enum NetworkRouter: TargetType {
 
@@ -21,7 +22,8 @@ enum NetworkRouter: TargetType {
 
     var headers: [String : String]? {
         return [
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Authorization": "Basic bGludXggYmFzZTY0IGRlY29kZQo="
         ]
     }
 
@@ -88,6 +90,16 @@ class NetworkService: NSObject {
             .filterSuccessfulStatusCodes()
             .mapApiError()
             .mapObject(T.self, context: context)
+    }
+
+
+    func downloadJSON(endpoint: NetworkRouter) -> Single<JSON> {
+        return apiProvider
+            .provider
+            .rx
+            .request(endpoint, callbackQueue: DispatchQueue.global(qos: .utility))
+            .filterSuccessfulStatusCodes()
+            .json()
     }
 }
 
