@@ -39,7 +39,8 @@ class WeatherForecastViewController: UIViewController {
         tableView.register(UINib(nibName: String(describing: WeatherTableViewCell.self), bundle: nil),
                            forCellReuseIdentifier: Constants.WeatherTableViewCellIndentifier)
         tableView.allowsSelection = false
-        tableView.rowHeight = Constants.WeatherTableViewCellHeight
+        tableView.estimatedRowHeight = Constants.WeatherTableViewCellHeight
+        tableView.rowHeight = UITableView.automaticDimension
     }
 
     private func bindViewModel() {

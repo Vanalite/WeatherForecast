@@ -132,6 +132,15 @@
 			path = MockJSON;
 			sourceTree = "<group>";
 		};
+		387718D524F23C3100AD9189 /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+				38345CAB24F1334400F1BB11 /* MockJSONAdapter.swift */,
+				38345CA724F131D300F1BB11 /* RealmTestCase.swift */,
+			);
+			path = Supports;
+			sourceTree = "<group>";
+		};
 		3880A6C424E97A3B00392934 = {
 			isa = PBXGroup;
 			children = (
@@ -174,12 +183,11 @@
 		3880A6E624E97A3C00392934 /* WeatherForecastTests */ = {
 			isa = PBXGroup;
 			children = (
+				387718D524F23C3100AD9189 /* Supports */,
 				38345CAD24F133C500F1BB11 /* MockJSON */,
 				38345CA524F1316700F1BB11 /* GeneratedMocks.swift */,
-				38345CAB24F1334400F1BB11 /* MockJSONAdapter.swift */,
 				3880A6E724E97A3C00392934 /* WeatherForecastTests.swift */,
 				3880A6E924E97A3C00392934 /* Info.plist */,
-				38345CA724F131D300F1BB11 /* RealmTestCase.swift */,
 			);
 			path = WeatherForecastTests;
 			sourceTree = "<group>";

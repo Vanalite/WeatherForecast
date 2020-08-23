@@ -27,6 +27,7 @@ final class WeatherForecastViewModel: ViewModelType {
         self.netWorkService = netWorkService
         self.realm = realm
         self.disposeBag = DisposeBag()
+        print("realm path: \(String(describing: Realm.Configuration.defaultConfiguration.fileURL))")
     }
 
     func transform(input: Input) -> Output {
@@ -43,6 +44,9 @@ final class WeatherForecastViewModel: ViewModelType {
                             let city = $0.city else { return [] }
                         let weatherArray = Array(city.weatherList)
                         self.weatherItems = weatherArray
+                        try self.realm.write {
+                            self.realm.add(city)
+                        }
                         return weatherArray
                 }
         }
